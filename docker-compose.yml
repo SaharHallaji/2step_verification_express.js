@@ -6,5 +6,15 @@ services:
       - '27017:27017'
     volumes:
       - dbdata6:/data/db
+  cache:
+    image: redis:6.2
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --loglevel warning
+    volumes:
+      - cache:/data
 volumes:
   dbdata6:
+  cache:
+    driver: local
